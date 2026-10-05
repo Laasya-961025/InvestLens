@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>InvestLens – Three-Layer Investment Framework</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@500;700&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head><body>
+<div id="auth"><form id="af" class="card"><h2 id="at">Create your account</h2><small id="ah">Choose a username and password to use this tool.</small>
+<label id="aul">Name / Username<input id="au" autocomplete="username" required></label>
+<label>Email ID<input id="aeid" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+<label>Password<input id="ap" type="password" autocomplete="new-password" minlength="4" required></label>
+<div id="ae" role="alert" style="color:var(--r);min-height:1.4em;font-size:.9rem"></div>
+<button class="btn" id="ab">Create account</button><button type="button" class="btn alt" id="sw">I already have an account</button>
+<small>Your account is stored on the InvestLens server; passwords are hashed.</small></form></div>
+<main class="hide" id="app">
+<div class="bar"><span id="who"></span><button class="btn alt" id="out">Log out</button></div>
+<h1>Three-layer investment framework</h1>
+<p class="sub">Layer 1 reads each company's balance sheet and splits your money across the safe ones. Layer 2 checks the price trend and gives a green, yellow or red buy signal. <br>  Layer 3 gives a one-line AI view on whether the company suits your investment period.</p>
+<div class="tabs" role="tablist">
+<button role="tab" id="t1" aria-selected="true">1. Screen and allocate</button>
+<button role="tab" id="t2" aria-selected="false">2. Buy signal</button>
+<button role="tab" id="t3" aria-selected="false">3. AI Investment Assistant</button>
+</div>
+
+<section id="p1">
+<div class="card"><h2>Your requirements</h2><div class="row">
+<label>Amount to invest<input id="budget" type="number" value="100000" min="0"></label>
+<label>Risk appetite<select id="risk"><option value="3">Conservative</option><option value="2" selected>Balanced</option><option value="1">Aggressive</option></select></label></div></div>
+<div class="card"><h2>Companies and balance sheets</h2><small>Use the latest annual report. All amounts in the same currency and unit. Sample values are shown; replace them.</small>
+<div class="scroll"><table><thead><tr><th>Company</th><th>Current assets</th><th>Current liabilities</th><th>Total debt</th><th>Equity</th><th>Cash</th><th>Revenue</th><th>Net income</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+<div class="row" style="margin-top:12px"><button class="btn alt" id="add">Add company</button><button class="btn" id="go">Analyze</button></div></div>
+<div id="out1"></div>
+</section>
+
+<section id="p2" class="hide">
+<div class="card"><h2>Is it safe to buy now?</h2>
+<div class="row"><label>Company<select id="co"></select></label></div>
+<label style="margin-top:12px">Recent closing prices, oldest first, separated by commas (at least 6)<textarea id="px" rows="2">102,104,103,107,109,108,112,115,114,118</textarea></label>
+<div style="margin-top:12px"><button class="btn" id="chk">Get signal</button></div></div>
+<div id="out2"></div>
+</section>
+
+<section id="p3" class="hide">
+<div class="card">
+<h2>AI Investment Assistant</h2>
+<p class="sub">Ask questions about the companies you entered. The assistant uses your balance-sheet score, price information, risk profile and time horizon to give an educational, rule-based view.</p>
+
+<div class="ai-grid">
+  <div>
+    <div class="row">
+      <label>Company<select id="aiCo"></select></label>
+      <label>Investment period
+        <select id="horizon">
+          <option value="short">Short term — up to 1 year</option>
+          <option value="medium" selected>Medium term — 1 to 3 years</option>
+          <option value="long">Long term — 3+ years</option>
+        </select>
+      </label>
+    </div>
+    <div style="margin:8px 0">
+      <span class="tag" data-q="Is this company suitable for my time period?">Suitability</span>
+      <span class="tag" data-q="What are the main risks?">Risks</span>
+      <span class="tag" data-q="Should I buy now or wait?">Buy or wait</span>
+      <span class="tag" data-q="Explain this company simply.">Explain</span>
+    </div>
+    <div class="chatbox" id="chatbox" aria-live="polite"></div>
+    <div class="row" style="margin-top:10px">
+      <label style="flex:1">Ask the assistant
+        <input id="aiQ" placeholder="e.g. Is this company suitable for 3 years?">
+      </label>
+      <button class="btn" id="aiSend" style="align-self:end">Ask AI</button>
+    </div>
+  </div>
+
+  <div class="card" style="margin:0">
+    <h2>AI view</h2>
+    <div id="aiSummary"><small>Run the analysis on Page 1 first, then choose a company.</small></div>
+  </div>
+</div>
+</div>
+</section>
+
+<p><small>Educational tool using simple rules on the numbers you enter. It does not fetch live market data and is not financial advice.</small></p>
+</main>
+<script src="js/app.js"></script>
+</body></html>
